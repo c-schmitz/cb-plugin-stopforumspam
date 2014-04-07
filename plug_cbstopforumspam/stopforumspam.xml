@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+* Joomla Community Builder User Plugin: plug_stopforumspam
+* @version 1.0
+* @package plug_stopforumspam
+* @subpackage stopforumspam.xml
+* @author Carsten Schmitz
+* @copyright (C) Carsten Schmitz, https://github.com/c-schmitz/cb-plugin-stopforumspam
+* @license Limited  http://www.gnu.org/copyleft/gpl.html GNU/GPL
+* @final 2.0
+*/
+-->
+<cbinstall version="1.0.0" type="plugin" group="user">
+	<name>CB StopForumSpam</name>
+	<author>Carsten Schmitz</author>
+	<creationDate>2014-04-07</creationDate>
+	<copyright>(C) 2014 Carsten Schmitz</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>carsten.schmitz@limesurvey.org</authorEmail>
+	<authorUrl>github.com/c-schmitz/cb-plugin-stopforumspam</authorUrl>
+	<version>1.0</version>
+        <release>1.0</release>
+	<description>
+		This is a simple plugin which checks an email addresss or ip adress on registration against the stopforumspam.com database.
+		Don't forget to activate and configure it!
+	</description>
+	<files>
+		<filename plugin="stopforumspam">stopforumspam.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<params>
+		<param	name="check_email" type="radio" label="Check email address" default="1" description="Check the email address against stopforumspam.com">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		<field name="confidence_email" required="1" filter="integer" type="text" default="10" maxlength="2" label="Email block confidence maximum %" description="Block a user if confidence by stopforumspam.com is above this value" size="5" />
+		<param	name="check_ip" type="radio" label="Check IP address" default="1" description="Check the IP address against stopforumspam.com">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		<field name="confidence_ip" required="1" filter="integer" type="text" default="15" maxlength="2" label="IP block confidence maximum %" description="Block a user if confidence by stopforumspam.com is above this value" size="5" />
+		<param	name="@spacer" type="spacer" label="License:" default="This plugin is distributed under GNU/GPL license" description="" />
+	</params>
+	<install>
+		<queries>
+		</queries>
+	</install>
+	<uninstall>
+	</uninstall>
+        <database>
+        </database>
+</cbinstall>
