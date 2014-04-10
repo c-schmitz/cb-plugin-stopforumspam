@@ -33,7 +33,7 @@ class getstopforumspam extends cbTabHandler {
         $bCheckIP = $oParams->get('check_ip','1');
         $iConfidenceEmail = (int)$oParams->get('confidence_email','10');
         $iConfidenceIP = (int)$oParams->get('confidence_ip','15');
-        $_SERVER['REMOTE_ADDR']='199.115.117.235';
+
         $sURL="http://www.stopforumspam.com/api?email=".urlencode($row->email)."&ip=".urlencode($_SERVER['REMOTE_ADDR']).'&f=json';
         $sJSON = file_get_contents($sURL);    
         if ($sJSON){
