@@ -15,52 +15,52 @@ if ( ! ( defined( '_VALID_CB' ) || defined( '_JEXEC' ) || defined( '_VALID_MOS' 
 
 
 $_PLUGINS->registerFunction( 'onBeforeUserRegistration' , 'checkUserAgainstStopForumSpam', 'getstopforumspam' ); 
- 
+
 class getstopforumspam extends cbTabHandler {
     /**
-     * Construnctor
-     */
+    * Construnctor
+    */
     function getstopforumspam() {
         $this->cbTabHandler();
     }
-    
+
     function checkUserAgainstStopForumSpam(&$row) {
         global $_PLUGINS, $_CB_framework;
 
         $oParams = $this->params; // get parameters (plugin and related tab)
 
         $bCheckEmail = $oParams->get('check_email','1');
-        $bCheckIP = $oParams->get('check_IP','0');
+        $bCheckIP = $oParams->get('check_ip','1');
         $iConfidenceEmail = (int)$oParams->get('confidence_email','10');
         $iConfidenceIP = (int)$oParams->get('confidence_ip','15');
-        
+        $_SERVER['REMOTE_ADDR']='199.115.117.235';
         $sURL="http://www.stopforumspam.com/api?email=".urlencode($row->email)."&ip=".urlencode($_SERVER['REMOTE_ADDR']).'&f=json';
         $sJSON = file_get_contents($sURL);    
         if ($sJSON){
             $aInfo=json_decode($sJSON,true);
             if ($bCheckEmail && isset($aInfo['email']) && isset($aInfo['email']['confidence']))
             {
-               if ($aInfo['email']['confidence']>$iConfidenceEmail)
-               {
+                if ($aInfo['email']['confidence']>$iConfidenceEmail)
+                {
                     // found a match now error out
                     $_PLUGINS->raiseError(0);
                     $_PLUGINS->_setErrorMSG("You are banned from registering on this website.");
-               }   
+                }   
             }
             if ($bCheckIP && isset($aInfo['ip']) && isset($aInfo['ip']['confidence']))
             {
-               if ($aInfo['ip']['confidence']>$iConfidenceIP)
-               {
+                if ($aInfo['ip']['confidence']>$iConfidenceIP)
+                {
                     // found a match now error out
                     $_PLUGINS->raiseError(0);
                     $_PLUGINS->_setErrorMSG("You are banned from registering on this website.");
-               }   
+                }   
             }
         }
         return true;
     }    
-    
-    
+
+
 
 } // end of getstopforumspam class
 ?>
