@@ -15,12 +15,12 @@
 	<name>CB StopForumSpam</name>
 	<author>Carsten Schmitz</author>
 	<creationDate>2014-04-07</creationDate>
-	<copyright>(C) 2014 Carsten Schmitz</copyright>
+	<copyright>(C) 2016 Carsten Schmitz</copyright>
 	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
 	<authorEmail>carsten.schmitz@limesurvey.org</authorEmail>
 	<authorUrl>github.com/c-schmitz/cb-plugin-stopforumspam</authorUrl>
-	<version>1.0</version>
-        <release>1.0</release>
+  <version>2.0.0</version>
+  <release>1.1.0</release> 
 	<description>
 		This is a simple plugin which checks an email addresss or ip adress on registration against the stopforumspam.com database.
 		Don't forget to activate and configure it!
